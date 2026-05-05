@@ -446,11 +446,11 @@
 
             if (this.options.scrollMode === 'item') {
                 if (direction === 'right') {
-                    const nextIndex = children.findIndex(child => child.offsetLeft > currentScroll + tolerance);
+                    const nextIndex = children.findIndex((child, index) => getOffsetWithGap(child, index) > currentScroll + tolerance);
                     return nextIndex !== -1 ? getOffsetWithGap(children[nextIndex], nextIndex) : currentScroll;
                 } else {
                     for (let i = children.length - 1; i >= 0; i--) {
-                        if (children[i].offsetLeft < currentScroll - tolerance) {
+                        if (getOffsetWithGap(children[i], i) < currentScroll - tolerance) {
                             return getOffsetWithGap(children[i], i);
                         }
                     }
