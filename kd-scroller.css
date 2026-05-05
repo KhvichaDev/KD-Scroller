@@ -1,0 +1,138 @@
+/* --- KD Scroller Library Core Styles --- */
+
+.kd-scroller-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 4px; 
+    
+    /* Base CSS variables for theme support */
+    --kd-btn-bg: #2b2b2b;
+    --kd-btn-text: #ffffff;
+    --kd-btn-border: rgba(255, 255, 255, 0.15);
+    --kd-btn-hover-bg: #3c3c3c;
+    --kd-btn-hover-border: rgba(255, 255, 255, 0.6);
+    
+    /* Structural variables for full customization */
+    --kd-btn-size: 42px;
+    --kd-btn-icon-size: 20px;
+    --kd-btn-radius: 50%;
+    --kd-btn-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    --kd-btn-hover-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.kd-scroller-track {
+    display: flex;
+    overflow-x: auto;
+    width: 100%;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scroll-behavior: auto; 
+    flex: 1;
+    position: relative; /* Critical for JS offset calculations */
+    cursor: grab;
+}
+
+/* Prevents hover flicker on cards during scroll animation and drag mode */
+.kd-scroller-wrapper.is-scrolling .kd-scroller-track,
+.kd-scroller-wrapper.kd-is-dragging .kd-scroller-track > * {
+    pointer-events: none;
+}
+
+.kd-scroller-wrapper.kd-is-dragging .kd-scroller-track {
+    cursor: grabbing;
+}
+
+.kd-scroller-track::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+/* Low-specificity defaults that are easily overridden by the developer */
+:where(.kd-scroller-track) {
+    gap: 15px;
+}
+
+.kd-scroller-track > * {
+    flex-shrink: 0 !important;
+}
+
+:where(.kd-scroller-track > *) {
+    width: max-content;
+    max-width: 100%;
+    white-space: nowrap;
+}
+
+/* Navigation buttons */
+.kd-scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: var(--kd-btn-bg);
+    border: 1px solid var(--kd-btn-border);
+    color: var(--kd-btn-text);
+    cursor: pointer;
+    padding: 0;
+    border-radius: var(--kd-btn-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    width: var(--kd-btn-size);
+    height: var(--kd-btn-size);
+    box-shadow: var(--kd-btn-shadow);
+}
+
+.kd-scroll-btn.left { left: -10px; }
+.kd-scroll-btn.right { right: -10px; }
+
+.kd-scroll-btn:hover {
+    background-color: var(--kd-btn-hover-bg);
+    border-color: var(--kd-btn-hover-border);
+    color: var(--kd-btn-text);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: var(--kd-btn-hover-shadow);
+}
+
+.kd-scroll-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.kd-scroll-btn svg {
+    width: var(--kd-btn-icon-size);
+    height: var(--kd-btn-icon-size);
+    pointer-events: none;
+}
+
+/* Infinite scroll loader animation */
+.kd-scroller-loader {
+    display: none;
+    align-self: stretch;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+    flex-shrink: 0 !important;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.kd-scroller-loader.visible {
+    opacity: 1;
+}
+
+.kd-spinner {
+    width: 22px;
+    height: 22px;
+    border: 3px solid var(--kd-btn-border);
+    border-top-color: var(--kd-btn-text);
+    border-radius: 50%;
+    animation: kd-spin 0.8s linear infinite;
+    box-sizing: border-box;
+}
+
+@keyframes kd-spin {
+    to { transform: rotate(360deg); }
+}

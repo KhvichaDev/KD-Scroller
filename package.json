@@ -1,0 +1,50 @@
+{
+  "name": "kd-scroller",
+  "version": "1.0.0",
+  "description": "A standalone, zero-dependency horizontal scroll component with navigation arrows, drag-to-scroll, keyboard accessibility, infinite scroll support, and intelligent auto-theming.",
+  "main": "kd-scroller.js",
+  "module": "kd-scroller.js",
+  "unpkg": "kd-scroller.min.js",
+  "jsdelivr": "kd-scroller.min.js",
+  "style": "kd-scroller.css",
+  "types": "index.d.ts",
+  "files": [
+    "kd-scroller.js",
+    "kd-scroller.min.js",
+    "kd-scroller.css",
+    "index.d.ts",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "node build.js",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KhvichaDev/kd-scroller.git"
+  },
+  "keywords": [
+    "scroller",
+    "horizontal-scroll",
+    "carousel",
+    "slider",
+    "navigation-arrows",
+    "drag-scroll",
+    "infinite-scroll",
+    "auto-theme",
+    "zero-dependency",
+    "vanilla-js",
+    "accessible"
+  ],
+  "author": {
+    "name": "KhvichaDev",
+    "email": "khvichadev@gmail.com",
+    "url": "https://khvichadev.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KhvichaDev/kd-scroller/issues"
+  },
+  "homepage": "https://github.com/KhvichaDev/kd-scroller"
+}
